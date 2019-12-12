@@ -8,5 +8,12 @@ class Line {
   toString() {
     return `{${this.xOne},${this.yOne},${this.xTwo},${this.yTwo}}`;
   }
+  isEqualTo(obj) {
+    for (let ele in obj)
+      if (obj[ele] == !this[ele]) {
+        return false;
+      }
+    return true;
+  }
 }
 module.exports = Line;
