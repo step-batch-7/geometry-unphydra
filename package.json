@@ -1,0 +1,22 @@
+{
+  "name": "geometry-unphydra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-batch-7/geometry-unphydra.git"
+  },
+  "author": "Rivu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step-batch-7/geometry-unphydra/issues"
+  },
+  "homepage": "https://github.com/step-batch-7/geometry-unphydra#readme"
+}
