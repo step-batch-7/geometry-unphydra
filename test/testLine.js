@@ -19,16 +19,16 @@ describe("toString", () => {
 
 describe("isEqualTo", () => {
   it("should give true for matched lines", () => {
-    const obj = {};
-    const line = new Line();
-    const actual = line.isEqualTo(obj);
+    const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+    const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+    const actual = line1.isEqualTo(line2);
     const expected = true;
     assert.deepStrictEqual(actual, expected);
   });
   it("should return false for unmatched lines ", () => {
-    const obj = { a: 1 };
-    const line = new Line();
-    const actual = line.isEqualTo(obj);
+    const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+    const line2 = new Line({}, {});
+    const actual = line1.isEqualTo(line2);
     const expected = false;
     assert.deepStrictEqual(actual, expected);
   });
