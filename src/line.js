@@ -6,7 +6,7 @@ class Line {
     this.yTwo = yTwo;
   }
   toString() {
-    return `{${this.xOne},${this.yOne},${this.xTwo},${this.yTwo}}`;
+    return `line endA(${this.xOne},${this.yOne}) endB(${this.xTwo},${this.yTwo})`;
   }
   isEqualTo(obj) {
     for (let ele in obj)
