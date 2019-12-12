@@ -1,12 +1,10 @@
 class Line {
-  constructor(xOne, yOne, xTwo, yTwo) {
-    this.xOne = xOne;
-    this.yOne = yOne;
-    this.xTwo = xTwo;
-    this.yTwo = yTwo;
+  constructor(endA, endB) {
+    this.endA = { ...endA };
+    this.endB = { ...endB };
   }
   toString() {
-    return `line endA(${this.xOne},${this.yOne}) endB(${this.xTwo},${this.yTwo})`;
+    return `line endA(${this.endA.x},${this.endA.y}) endB(${this.endB.x},${this.endB.y})`;
   }
   isEqualTo(obj) {
     for (let ele in obj)
