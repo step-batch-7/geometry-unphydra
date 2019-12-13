@@ -7,7 +7,9 @@ class Line {
     this.endB = { x: endB.x, y: endB.y };
   }
   toString() {
-    return `line endA(${this.endA.x},${this.endA.y}) endB(${this.endB.x},${this.endB.y})`;
+    const endA = `endA(${this.endA.x},${this.endA.y})`;
+    const endB = `endB(${this.endB.x},${this.endB.y})`;
+    return `line ${endA}-----${endB}`;
   }
   isEqualTo(other) {
     const isInstanceofLine = other instanceof Line;
