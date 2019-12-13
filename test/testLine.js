@@ -9,6 +9,7 @@ describe("Line", () => {
       const expected = "line endA(1,2)-----endB(3,4)";
       assert.deepStrictEqual(actual, expected);
     });
+
     it("should give string representation of the line as undefined for no values ", () => {
       const line = new Line({}, {});
       const actual = line.toString();
@@ -24,16 +25,19 @@ describe("Line", () => {
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.ok(line1.isEqualTo(line2));
     });
+
     it("should return false for undefined points of lines ", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({}, {});
       assert.notOk(line1.isEqualTo(line2));
     });
+
     it("should give false for unmatched line", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 5 });
       assert.notOk(line1.isEqualTo(line2));
     });
+
     it("should give true if same line is given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.ok(line1.isEqualTo(line1));
@@ -47,30 +51,35 @@ describe("Line", () => {
       const expected = 5;
       assert.deepStrictEqual(actual, expected);
     });
+
     it("should give length for one negative point", () => {
       const line = new Line({ x: 2, y: 2 }, { x: -2, y: -1 });
       const actual = line.length;
       const expected = 5;
       assert.deepStrictEqual(actual, expected);
     });
+
     it("should give length for two negative points", () => {
       const line = new Line({ x: -6, y: -4 }, { x: -2, y: -1 });
       const actual = line.length;
       const expected = 5;
       assert.deepStrictEqual(actual, expected);
     });
+
     it("should give length for two points on second quadrant", () => {
       const line = new Line({ x: 6, y: -4 }, { x: 2, y: -1 });
       const actual = line.length;
       const expected = 5;
       assert.deepStrictEqual(actual, expected);
     });
+
     it("should give length for two points on third quadrant", () => {
       const line = new Line({ x: -6, y: 4 }, { x: -2, y: 1 });
       const actual = line.length;
       const expected = 5;
       assert.deepStrictEqual(actual, expected);
     });
+
     it("should give length for two points with approximate value", () => {
       const line = new Line({ x: 6, y: 7 }, { x: 3, y: 2 });
       const actual = line.length;
@@ -80,14 +89,57 @@ describe("Line", () => {
   });
 
   describe("isParallelTo", () => {
-    it("should give true for same line", () => {
+    it("should give true for same line with positive points", () => {
       const line = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
       assert.ok(line.isParallelTo(line));
     });
-    it("should give false for unparalleled line", () => {
+
+    it("should give false for unparalleled line with positive points", () => {
       const line1 = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
       const line2 = new Line({ x: 2, y: 4 }, { x: 1, y: 2 });
       assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should give true for parallel line with negative points", () => {
+      const line1 = new Line({ x: 0, y: -3 }, { x: -2, y: 0 });
+      const line2 = new Line({ x: 0, y: -6 }, { x: -4, y: 0 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should give false for unparalleled line with negative points", () => {
+      const line1 = new Line({ x: -4, y: -3 }, { x: -2, y: -3 });
+      const line2 = new Line({ x: -5, y: -6 }, { x: -4, y: -9 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+  });
+
+  describe("slope", () => {
+    it("should give slope for line with positive points", () => {
+      const line = new Line({ x: 7, y: 6 }, { x: 6, y: 2 });
+      const actual = line.slope;
+      const expected = 4;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give slope for line with negative points", () => {
+      const line = new Line({ x: -4, y: -3 }, { x: -2, y: -1 });
+      const actual = line.slope;
+      const expected = 1;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give zero for x-axis", () => {
+      const line = new Line({ x: 2, y: 0 }, { x: 1, y: 0 });
+      const actual = line.slope;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give zero for y-axis", () => {
+      const line = new Line({ x: 0, y: 2 }, { x: 0, y: 1 });
+      const actual = line.slope;
+      const expected = Infinity;
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });
