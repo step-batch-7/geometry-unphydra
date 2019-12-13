@@ -20,5 +20,11 @@ class Line {
       isInstanceofLine && arePointsEqual(other.endA, this.endA);
     return areEndsEqual && arePointsEqual(other.endB, this.endB);
   }
+  get length() {
+    const xAxisRef = (this.endA.x - this.endB.x) ** 2;
+    const yAxisRef = (this.endA.y - this.endB.y) ** 2;
+    const totalRef = xAxisRef + yAxisRef;
+    return Math.sqrt(totalRef);
+  }
 }
 module.exports = Line;

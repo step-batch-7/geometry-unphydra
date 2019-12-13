@@ -39,4 +39,43 @@ describe("Line", () => {
       assert.ok(line1.isEqualTo(line1));
     });
   });
+
+  describe("length", () => {
+    it("should give length for positive points", () => {
+      const line = new Line({ x: 5, y: 4 }, { x: 1, y: 1 });
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should give length for one negative point", () => {
+      const line = new Line({ x: 2, y: 2 }, { x: -2, y: -1 });
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should give length for two negative points", () => {
+      const line = new Line({ x: -6, y: -4 }, { x: -2, y: -1 });
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should give length for two points on second quadrant", () => {
+      const line = new Line({ x: 6, y: -4 }, { x: 2, y: -1 });
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should give length for two points on third quadrant", () => {
+      const line = new Line({ x: -6, y: 4 }, { x: -2, y: 1 });
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should give length for two points with approximate value", () => {
+      const line = new Line({ x: 6, y: 7 }, { x: 3, y: 2 });
+      const actual = line.length;
+      const expected = 5.83;
+      assert.approximately(actual, expected, 0.01);
+    });
+  });
 });
