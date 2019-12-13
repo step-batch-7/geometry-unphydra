@@ -3,17 +3,17 @@ const isEqualPoint = function(pointA, pointB) {
 };
 class Line {
   constructor(endA, endB) {
-    this.endA = { ...endA };
-    this.endB = { ...endB };
+    this.endA = { x: endA.x, y: endA.y };
+    this.endB = { x: endB.x, y: endB.y };
   }
   toString() {
     return `line endA(${this.endA.x},${this.endA.y}) endB(${this.endB.x},${this.endB.y})`;
   }
   isEqualTo(other) {
     const isInstanceofLine = other instanceof Line;
-    let isEqualVal =
+    let arePointEqual =
       isInstanceofLine && isEqualPoint(other.endA, this.endA);
-    return isEqualVal && isEqualPoint(other.endB, this.endB);
+    return arePointEqual && isEqualPoint(other.endB, this.endB);
   }
 }
 module.exports = Line;
