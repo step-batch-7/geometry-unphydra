@@ -32,6 +32,9 @@ class Line {
   }
 
   isParallelTo(other) {
+    if (!(other instanceof Line)) {
+      return false;
+    }
     const slopeOFThis = this.slope;
     const slopeOfOther = other.slope;
     return slopeOFThis === slopeOfOther;
