@@ -78,4 +78,16 @@ describe("Line", () => {
       assert.approximately(actual, expected, 0.01);
     });
   });
+
+  describe("isParallelTo", () => {
+    it("should give true for same line", () => {
+      const line = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
+      assert.ok(line.isParallelTo(line));
+    });
+    it("should give false for unparalleled line", () => {
+      const line1 = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 2, y: 4 }, { x: 1, y: 2 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+  });
 });
