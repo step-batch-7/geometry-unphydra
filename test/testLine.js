@@ -141,5 +141,12 @@ describe("Line", () => {
       const expected = Infinity;
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should give NaN for a point", () => {
+      const line = new Line({ x: 2, y: 1 }, { x: 2, y: 1 });
+      const actual = line.slope;
+      const expected = NaN;
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });
