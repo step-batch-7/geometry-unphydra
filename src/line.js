@@ -12,6 +12,9 @@ class Line {
     return `line ${endA}-----${endB}`;
   }
   isEqualTo(other) {
+    if (other === this) {
+      return true;
+    }
     const isInstanceofLine = other instanceof Line;
     let arePointEqual =
       isInstanceofLine && isEqualPoint(other.endA, this.endA);

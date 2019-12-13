@@ -32,4 +32,10 @@ describe("isEqualTo", () => {
     const expected = false;
     assert.deepStrictEqual(actual, expected);
   });
+  it("should give true if same line is given", () => {
+    const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+    const actual = line1.isEqualTo(line1);
+    const expected = true;
+    assert.deepStrictEqual(actual, expected);
+  });
 });
