@@ -1,4 +1,4 @@
-const isEqualPoint = function(pointA, pointB) {
+const arePointsEqual = function(pointA, pointB) {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 class Line {
@@ -16,9 +16,9 @@ class Line {
       return true;
     }
     const isInstanceofLine = other instanceof Line;
-    let arePointEqual =
-      isInstanceofLine && isEqualPoint(other.endA, this.endA);
-    return arePointEqual && isEqualPoint(other.endB, this.endB);
+    let areEndsEqual =
+      isInstanceofLine && arePointsEqual(other.endA, this.endA);
+    return areEndsEqual && arePointsEqual(other.endB, this.endB);
   }
 }
 module.exports = Line;
