@@ -20,25 +20,25 @@ describe("Line", () => {
   });
 
   describe("isEqualTo", () => {
-    it("should give true for matched lines", () => {
+    it("should validate for matched lines", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.ok(line1.isEqualTo(line2));
     });
 
-    it("should return false for undefined points of lines ", () => {
+    it("should invalidate for undefined points of lines ", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({}, {});
       assert.notOk(line1.isEqualTo(line2));
     });
 
-    it("should give false for unmatched line", () => {
+    it("should invalidate for unmatched line", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 5 });
       assert.notOk(line1.isEqualTo(line2));
     });
 
-    it("should give true if same line is given", () => {
+    it("should validate if same line is given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.ok(line1.isEqualTo(line1));
     });
@@ -89,36 +89,36 @@ describe("Line", () => {
   });
 
   describe("isParallelTo", () => {
-    it("should give true for same line with positive points", () => {
+    it("should validate for same line with positive points", () => {
       const line = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
       assert.notOk(line.isParallelTo(line));
     });
 
-    it("should give false for two line segment of same line", () => {
+    it("should invalidate for two line segment of same line", () => {
       const line1 = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
       const line2 = new Line({ x: 9, y: 9 }, { x: 5, y: 5 });
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should give false for unparalleled line with positive points", () => {
+    it("should invalidate for unparalleled line with positive points", () => {
       const line1 = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
       const line2 = new Line({ x: 2, y: 4 }, { x: 1, y: 2 });
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should give true for parallel line with negative points", () => {
+    it("should validate for parallel line with negative points", () => {
       const line1 = new Line({ x: 0, y: -3 }, { x: -2, y: 0 });
       const line2 = new Line({ x: 0, y: -6 }, { x: -4, y: 0 });
       assert.ok(line1.isParallelTo(line2));
     });
 
-    it("should give false for unparalleled line with negative points", () => {
+    it("should invalidate for unparalleled line with negative points", () => {
       const line1 = new Line({ x: -4, y: -3 }, { x: -2, y: -3 });
       const line2 = new Line({ x: -5, y: -6 }, { x: -4, y: -9 });
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should give false if given line is not instanceof Line", () => {
+    it("should invalidate if given line is not instanceof Line", () => {
       const line1 = new Line({ x: -4, y: -3 }, { x: -2, y: -3 });
       const line2 = { endA: { x: -5, y: -6 }, endB: { x: -4, y: -9 } };
       assert.notOk(line1.isParallelTo(line2));
@@ -275,27 +275,27 @@ describe("Line", () => {
   });
 
   describe("hasPoint", () => {
-    it("should give true for a line segment with positive points", () => {
+    it("should validate for a line segment with positive points", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
       assert.ok(line.hasPoint({ x: 3, y: 3 }));
     });
 
-    it("should give false for a line segment with positive points", () => {
+    it("should invalidate for a line segment with positive points", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
       assert.notOk(line.hasPoint({ x: 6, y: 6 }));
     });
 
-    it("should give true for a line segment with negative points", () => {
+    it("should validate for a line segment with negative points", () => {
       const line = new Line({ x: -2, y: -1 }, { x: -8, y: -4 });
       assert.ok(line.hasPoint({ x: -4, y: -2 }));
     });
 
-    it("should give false for a line segment with negative points", () => {
+    it("should invalidate for a line segment with negative points", () => {
       const line = new Line({ x: -2, y: -1 }, { x: -8, y: -4 });
       assert.notOk(line.hasPoint({ x: -10, y: -2 }));
     });
 
-    it("should give true for a line segment passing through zero,zero", () => {
+    it("should validate for a line segment passing through zero,zero", () => {
       const line = new Line({ x: -2, y: -2 }, { x: 2, y: 2 });
       assert.ok(line.hasPoint({ x: 0, y: 0 }));
     });
