@@ -26,6 +26,13 @@ const isBothSlopeAreInfinity = function(slope1, slope2) {
   return values.includes(slope1) && values.includes(slope2);
 };
 
+const checkPointsCollinear = function(point1, point2, point3) {
+  const [x1, y1] = [point1.x, point1.y];
+  const [x2, y2] = [point2.x, point2.y];
+  const [x3, y3] = [point3.x, point3.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) === 0;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -64,17 +71,15 @@ class Line {
       other.slope
     );
     const areSlopeEqual = areEqual(this.slope, other.slope);
-    const yInterceptOfThis = getYIntercept(this.endA, this.slope);
-    const yInterceptOfOther = getYIntercept(other.endA, other.slope);
-    const areYInterceptEqual = areEqual(
-      yInterceptOfThis,
-      yInterceptOfOther
+    let arePointsCollinear = checkPointsCollinear(
+      this.endA,
+      this.endB,
+      other.endA
     );
-    const isnan = isNaN(yInterceptOfThis + yInterceptOfOther);
-    return (
-      (checkInfinitySlope && isnan) ||
-      (!areYInterceptEqual && areSlopeEqual)
-    );
+    arePointsCollinear =
+      arePointsCollinear &&
+      checkPointsCollinear(this.endB, other.endA, other.endB);
+    return (checkInfinitySlope || areSlopeEqual) && !arePointsCollinear;
   }
 
   get slope() {

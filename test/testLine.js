@@ -89,7 +89,19 @@ describe("Line", () => {
   });
 
   describe("isParallelTo", () => {
-    it("should validate for same line with positive points", () => {
+    it("should validate for parallel line with positive points", () => {
+      const line1 = new Line({ x: 0, y: 3 }, { x: 2, y: 0 });
+      const line2 = new Line({ x: 0, y: 6 }, { x: 4, y: 0 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should validate for parallel line with negative points", () => {
+      const line1 = new Line({ x: 0, y: -3 }, { x: -2, y: 0 });
+      const line2 = new Line({ x: 0, y: -6 }, { x: -4, y: 0 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for same line with positive points", () => {
       const line = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
       assert.notOk(line.isParallelTo(line));
     });
@@ -106,12 +118,6 @@ describe("Line", () => {
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should validate for parallel line with negative points", () => {
-      const line1 = new Line({ x: 0, y: -3 }, { x: -2, y: 0 });
-      const line2 = new Line({ x: 0, y: -6 }, { x: -4, y: 0 });
-      assert.ok(line1.isParallelTo(line2));
-    });
-
     it("should invalidate for unparalleled line with negative points", () => {
       const line1 = new Line({ x: -4, y: -3 }, { x: -2, y: -3 });
       const line2 = new Line({ x: -5, y: -6 }, { x: -4, y: -9 });
@@ -121,6 +127,12 @@ describe("Line", () => {
     it("should invalidate if given line is not instanceof Line", () => {
       const line1 = new Line({ x: -4, y: -3 }, { x: -2, y: -3 });
       const line2 = { endA: { x: -5, y: -6 }, endB: { x: -4, y: -9 } };
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two line segment of y-axis", () => {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 2 });
+      const line2 = new Line({ x: 0, y: -2 }, { x: 0, y: 0 });
       assert.notOk(line1.isParallelTo(line2));
     });
 
