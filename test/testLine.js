@@ -273,4 +273,16 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("hasPoint", () => {
+    it("should give true for a line segment with positive points", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      assert.ok(line.hasPoint({ x: 3, y: 3 }));
+    });
+
+    it("should give false for a line segment with positive points", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      assert.notOk(line.hasPoint({ x: 6, y: 6 }));
+    });
+  });
 });

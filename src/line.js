@@ -105,5 +105,17 @@ class Line {
     const line2 = new Line(midPoint, this.endB);
     return [line1, line2];
   }
+
+  hasPoint(point) {
+    const isXisInRange = isPointInRange(point.x, [
+      this.endA.x,
+      this.endB.x
+    ]);
+    const isYisInRange = isPointInRange(point.y, [
+      this.endA.y,
+      this.endB.y
+    ]);
+    return isXisInRange && isYisInRange;
+  }
 }
 module.exports = Line;
