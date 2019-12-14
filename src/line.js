@@ -11,7 +11,7 @@ const areEqual = function(val1, val2) {
   return val1 === val2;
 };
 
-const isPointInRange = function(point, range) {
+const isCoordinateInRange = function(point, range) {
   const sortedRange = range.sort((a, b) => a - b);
   return point >= sortedRange[0] && point <= sortedRange[1];
 };
@@ -72,7 +72,7 @@ class Line {
   }
 
   findY(x) {
-    if (!isPointInRange(x, [this.endA.x, this.endB.x])) {
+    if (!isCoordinateInRange(x, [this.endA.x, this.endB.x])) {
       return NaN;
     }
     const yInterceptOfThis = getYIntercept(this);
@@ -86,7 +86,7 @@ class Line {
   }
 
   findX(y) {
-    if (!isPointInRange(y, [this.endA.y, this.endB.y])) {
+    if (!isCoordinateInRange(y, [this.endA.y, this.endB.y])) {
       return NaN;
     }
     const yInterceptOfThis = getYIntercept(this);
@@ -107,11 +107,11 @@ class Line {
   }
 
   hasPoint(point) {
-    const isXisInRange = isPointInRange(point.x, [
+    const isXisInRange = isCoordinateInRange(point.x, [
       this.endA.x,
       this.endB.x
     ]);
-    const isYisInRange = isPointInRange(point.y, [
+    const isYisInRange = isCoordinateInRange(point.y, [
       this.endA.y,
       this.endB.y
     ]);
