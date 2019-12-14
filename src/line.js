@@ -2,6 +2,15 @@ const arePointsEqual = function(pointA, pointB) {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 
+const getYIntercept = function(line) {
+  const slopeOFLine = line.slope;
+  return line.endA.y - line.endA.x * slopeOFLine;
+};
+
+const areEqual = function(val1, val2) {
+  return val1 === val2;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -35,9 +44,8 @@ class Line {
     if (!(other instanceof Line)) {
       return false;
     }
-    const slopeOFThis = this.slope;
-    const slopeOfOther = other.slope;
-    return slopeOFThis === slopeOfOther;
+    const areSlopeEqual = areEqual(this.slope, other.slope);
+    return areSlopeEqual;
   }
 
   get slope() {
