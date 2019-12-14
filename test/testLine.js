@@ -194,7 +194,21 @@ describe("Line", () => {
     it("should give y coordinate for x coordinate of a line parallel to y-axis", () => {
       const line = new Line({ x: 2, y: 0 }, { x: 2, y: 4 });
       const actual = line.findY(2);
-      const expected = 2;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give y coordinate for x coordinate of x-axis", () => {
+      const line = new Line({ x: 4, y: 0 }, { x: -4, y: 0 });
+      const actual = line.findY(0);
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give y coordinate for x coordinate of y-axis", () => {
+      const line = new Line({ x: 0, y: 4 }, { x: 0, y: -4 });
+      const actual = line.findY(0);
+      const expected = 4;
       assert.deepStrictEqual(actual, expected);
     });
   });
@@ -224,13 +238,27 @@ describe("Line", () => {
     it("should give x coordinate for y coordinate of a line parallel to x-axis", () => {
       const line = new Line({ x: 0, y: 2 }, { x: 4, y: 2 });
       const actual = line.findX(2);
-      const expected = 2;
+      const expected = 0;
       assert.deepStrictEqual(actual, expected);
     });
 
     it("should give x coordinate for y coordinate of a line parallel to y-axis", () => {
       const line = new Line({ x: 2, y: 0 }, { x: 2, y: 4 });
       const actual = line.findX(3);
+      const expected = 2;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give x coordinate for y coordinate of x-axis", () => {
+      const line = new Line({ x: 4, y: 0 }, { x: -4, y: 0 });
+      const actual = line.findX(0);
+      const expected = 4;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give x coordinate for y coordinate of y-axis", () => {
+      const line = new Line({ x: 0, y: 4 }, { x: 0, y: -4 });
+      const actual = line.findX(0);
       const expected = 0;
       assert.deepStrictEqual(actual, expected);
     });

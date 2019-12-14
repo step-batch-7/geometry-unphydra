@@ -79,7 +79,7 @@ class Line {
     const Y = slopeOFThis * x + yInterceptOfThis;
 
     if (isNaN(Y)) {
-      return this.endA.x;
+      return this.endA.y;
     }
     return Y;
   }
@@ -93,7 +93,7 @@ class Line {
     const X = (y - yInterceptOfThis) / slopeOFThis;
 
     if (isNaN(X)) {
-      return this.endA.y;
+      return this.endA.x;
     }
     return X;
   }
