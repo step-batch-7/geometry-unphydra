@@ -91,7 +91,13 @@ describe("Line", () => {
   describe("isParallelTo", () => {
     it("should give true for same line with positive points", () => {
       const line = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
-      assert.ok(line.isParallelTo(line));
+      assert.notOk(line.isParallelTo(line));
+    });
+
+    it("should give false for two line segment of same line", () => {
+      const line1 = new Line({ x: 2, y: 2 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 9, y: 9 }, { x: 5, y: 5 });
+      assert.notOk(line1.isParallelTo(line2));
     });
 
     it("should give false for unparalleled line with positive points", () => {

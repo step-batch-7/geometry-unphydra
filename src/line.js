@@ -45,7 +45,13 @@ class Line {
       return false;
     }
     const areSlopeEqual = areEqual(this.slope, other.slope);
-    return areSlopeEqual;
+    const yInterceptOfThis = getYIntercept(this);
+    const yInterceptOfOther = getYIntercept(other);
+    const areYInterceptEqual = areEqual(
+      yInterceptOfThis,
+      yInterceptOfOther
+    );
+    return areSlopeEqual && !areYInterceptEqual;
   }
 
   get slope() {
