@@ -198,4 +198,41 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("findX", () => {
+    it("should give x coordinate for positive y coordinate of a line segment", () => {
+      const line = new Line({ x: 9, y: 9 }, { x: 1, y: 1 });
+      const actual = line.findX(3);
+      const expected = 3;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give x coordinate for negative y coordinate of a line segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -7, y: -7 });
+      const actual = line.findX(-4);
+      const expected = -4;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give NaN for y coordinate outside line segment but in same line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+      const actual = line.findX(3);
+      const expected = NaN;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give x coordinate for y coordinate of a line parallel to x-axis", () => {
+      const line = new Line({ x: 0, y: 2 }, { x: 4, y: 2 });
+      const actual = line.findX(2);
+      const expected = 2;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give x coordinate for y coordinate of a line parallel to y-axis", () => {
+      const line = new Line({ x: 2, y: 0 }, { x: 2, y: 4 });
+      const actual = line.findX(3);
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });

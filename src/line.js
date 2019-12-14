@@ -78,5 +78,19 @@ class Line {
     }
     return Y;
   }
+
+  findX(y) {
+    if (!isPointInRange(y, [this.endA.y, this.endB.y])) {
+      return NaN;
+    }
+    const yInterceptOfThis = getYIntercept(this);
+    const slopeOFThis = this.slope;
+    const X = (y - yInterceptOfThis) / slopeOFThis;
+
+    if (isNaN(X)) {
+      return this.endA.y;
+    }
+    return X;
+  }
 }
 module.exports = Line;
