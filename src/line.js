@@ -12,7 +12,7 @@ const areEqual = function(val1, val2) {
 };
 
 const isPointInRange = function(point, range) {
-  const sortedRange = range.sort();
+  const sortedRange = range.sort((a, b) => a - b);
   return point >= sortedRange[0] && point <= sortedRange[1];
 };
 
