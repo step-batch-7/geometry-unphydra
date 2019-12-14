@@ -235,4 +235,42 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("split", () => {
+    it("should split and give two line segment of a line of positive points", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const splitLine1 = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const splitLine2 = new Line({ x: 3, y: 3 }, { x: 5, y: 5 });
+      const actual = line.split();
+      const expected = [splitLine1, splitLine2];
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should split and give two line segment of a line of negative points", () => {
+      const line = new Line({ x: 2, y: 2 }, { x: -2, y: -2 });
+      const splitLine1 = new Line({ x: 2, y: 2 }, { x: 0, y: 0 });
+      const splitLine2 = new Line({ x: 0, y: 0 }, { x: -2, y: -2 });
+      const actual = line.split();
+      const expected = [splitLine1, splitLine2];
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should split and give two line segment of line segment of x-axis", () => {
+      const line = new Line({ x: 1, y: 0 }, { x: 5, y: 0 });
+      const splitLine1 = new Line({ x: 1, y: 0 }, { x: 3, y: 0 });
+      const splitLine2 = new Line({ x: 3, y: 0 }, { x: 5, y: 0 });
+      const actual = line.split();
+      const expected = [splitLine1, splitLine2];
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should split and give two line segment of line segment of y-axis", () => {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 5 });
+      const splitLine1 = new Line({ x: 0, y: 1 }, { x: 0, y: 3 });
+      const splitLine2 = new Line({ x: 0, y: 3 }, { x: 0, y: 5 });
+      const actual = line.split();
+      const expected = [splitLine1, splitLine2];
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });

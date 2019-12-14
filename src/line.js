@@ -92,5 +92,14 @@ class Line {
     }
     return X;
   }
+
+  split() {
+    const xOfMidPoint = (this.endA.x + this.endB.x) / 2;
+    const yOfMidPoint = (this.endA.y + this.endB.y) / 2;
+    const midPoint = { x: xOfMidPoint, y: yOfMidPoint };
+    const line1 = new Line(this.endA, midPoint);
+    const line2 = new Line(midPoint, this.endB);
+    return [line1, line2];
+  }
 }
 module.exports = Line;
