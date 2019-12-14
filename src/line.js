@@ -11,6 +11,11 @@ const areEqual = function(val1, val2) {
   return val1 === val2;
 };
 
+const isPointInRange = function(point, range) {
+  const sortedRange = range.sort();
+  return point >= sortedRange[0] && point <= sortedRange[1];
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -58,6 +63,20 @@ class Line {
     const deltaX = this.endA.x - this.endB.x;
     const deltaY = this.endA.y - this.endB.y;
     return deltaY / deltaX;
+  }
+
+  findY(x) {
+    if (!isPointInRange(x, [this.endA.x, this.endB.x])) {
+      return NaN;
+    }
+    const yInterceptOfThis = getYIntercept(this);
+    const slopeOFThis = this.slope;
+    const Y = slopeOFThis * x + yInterceptOfThis;
+
+    if (isNaN(Y)) {
+      return this.endA.x;
+    }
+    return Y;
   }
 }
 module.exports = Line;
