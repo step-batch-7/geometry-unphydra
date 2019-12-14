@@ -123,6 +123,30 @@ describe("Line", () => {
       const line2 = { endA: { x: -5, y: -6 }, endB: { x: -4, y: -9 } };
       assert.notOk(line1.isParallelTo(line2));
     });
+
+    it("should invalidate for two line segment of y-axis", () => {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 2 });
+      const line2 = new Line({ x: 0, y: 0 }, { x: 0, y: -2 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two line segment parallel to y-axis", () => {
+      const line1 = new Line({ x: 2, y: 4 }, { x: 2, y: -4 });
+      const line2 = new Line({ x: -2, y: 4 }, { x: -2, y: -4 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two line segment of x-axis", () => {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 2, y: 0 });
+      const line2 = new Line({ x: -2, y: 0 }, { x: 0, y: 0 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two line segment parallel to x-axis", () => {
+      const line1 = new Line({ x: 4, y: 2 }, { x: -4, y: 2 });
+      const line2 = new Line({ x: 4, y: -2 }, { x: -4, y: -2 });
+      assert.ok(line1.isParallelTo(line2));
+    });
   });
 
   describe("slope", () => {

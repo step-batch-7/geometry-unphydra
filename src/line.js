@@ -61,7 +61,8 @@ class Line {
       yInterceptOfThis,
       yInterceptOfOther
     );
-    return areSlopeEqual && !areYInterceptEqual;
+    const isnan = isNaN(yInterceptOfThis + yInterceptOfOther);
+    return areSlopeEqual && (!areYInterceptEqual || isnan);
   }
 
   get slope() {
