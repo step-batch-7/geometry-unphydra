@@ -2,18 +2,17 @@ const arePointsEqual = function(pointA, pointB) {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 
-const getYIntercept = function(line) {
-  const slopeOFLine = line.slope;
-  return line.endA.y - line.endA.x * slopeOFLine;
+const getYIntercept = function(point, slope) {
+  return point.y - point.x * slope;
 };
 
 const areEqual = function(val1, val2) {
   return val1 === val2;
 };
 
-const isCoordinateInRange = function(point, range) {
+const isCoordinateInRange = function(coordinate, range) {
   const sortedRange = range.sort((a, b) => a - b);
-  return point >= sortedRange[0] && point <= sortedRange[1];
+  return coordinate >= sortedRange[0] && coordinate <= sortedRange[1];
 };
 
 const getMidPoint = function(line) {
@@ -56,8 +55,8 @@ class Line {
       return false;
     }
     const areSlopeEqual = areEqual(this.slope, other.slope);
-    const yInterceptOfThis = getYIntercept(this);
-    const yInterceptOfOther = getYIntercept(other);
+    const yInterceptOfThis = getYIntercept(this.endA, this.slope);
+    const yInterceptOfOther = getYIntercept(other.endA, other.slope);
     const areYInterceptEqual = areEqual(
       yInterceptOfThis,
       yInterceptOfOther
@@ -75,8 +74,8 @@ class Line {
     if (!isCoordinateInRange(x, [this.endA.x, this.endB.x])) {
       return NaN;
     }
-    const yInterceptOfThis = getYIntercept(this);
     const slopeOFThis = this.slope;
+    const yInterceptOfThis = getYIntercept(this.endA, slopeOFThis);
     const Y = slopeOFThis * x + yInterceptOfThis;
 
     if (isNaN(Y)) {
@@ -89,8 +88,8 @@ class Line {
     if (!isCoordinateInRange(y, [this.endA.y, this.endB.y])) {
       return NaN;
     }
-    const yInterceptOfThis = getYIntercept(this);
     const slopeOFThis = this.slope;
+    const yInterceptOfThis = getYIntercept(this.endA, slopeOFThis);
     const X = (y - yInterceptOfThis) / slopeOFThis;
 
     if (isNaN(X)) {
