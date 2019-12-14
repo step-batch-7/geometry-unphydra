@@ -6,7 +6,7 @@ describe("Line", () => {
     it("should give string representation of the line for four values", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = line.toString();
-      const expected = "line endA(1,2)-----endB(3,4)";
+      const expected = "[line (1,2) to (3,4)]";
       assert.deepStrictEqual(actual, expected);
     });
 
@@ -14,7 +14,7 @@ describe("Line", () => {
       const line = new Line({}, {});
       const actual = line.toString();
       const expected =
-        "line endA(undefined,undefined)-----endB(undefined,undefined)";
+        "[line (undefined,undefined) to (undefined,undefined)]";
       assert.deepStrictEqual(actual, expected);
     });
   });

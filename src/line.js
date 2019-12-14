@@ -23,9 +23,9 @@ class Line {
   }
 
   toString() {
-    const endA = `endA(${this.endA.x},${this.endA.y})`;
-    const endB = `endB(${this.endB.x},${this.endB.y})`;
-    return `line ${endA}-----${endB}`;
+    const endA = `(${this.endA.x},${this.endA.y})`;
+    const endB = `(${this.endB.x},${this.endB.y})`;
+    return `[line ${endA} to ${endB}]`;
   }
 
   isEqualTo(other) {
