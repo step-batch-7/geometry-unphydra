@@ -15,9 +15,9 @@ const isCoordinateInRange = function(coordinate, range) {
   return coordinate >= sortedRange[0] && coordinate <= sortedRange[1];
 };
 
-const getMidPoint = function(line) {
-  const xOfMidPoint = (line.endA.x + line.endB.x) / 2;
-  const yOfMidPoint = (line.endA.y + line.endB.y) / 2;
+const getMidPoint = function(pointA, pointB) {
+  const xOfMidPoint = (pointA.x + pointB.x) / 2;
+  const yOfMidPoint = (pointA.y + pointB.y) / 2;
   return { x: xOfMidPoint, y: yOfMidPoint };
 };
 
@@ -99,7 +99,7 @@ class Line {
   }
 
   split() {
-    const midPoint = getMidPoint(this);
+    const midPoint = getMidPoint(this.endA, this.endB);
     const line1 = new Line(this.endA, midPoint);
     const line2 = new Line(midPoint, this.endB);
     return [line1, line2];
