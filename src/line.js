@@ -21,6 +21,11 @@ const getMidPoint = function(pointA, pointB) {
   return { x: xOfMidPoint, y: yOfMidPoint };
 };
 
+const isBothSlopeAreInfinity = function(slope1, slope2) {
+  const values = [Infinity, -Infinity];
+  return values.includes(slope1) && values.includes(slope2);
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -54,6 +59,10 @@ class Line {
     if (!(other instanceof Line)) {
       return false;
     }
+    const checkInfinitySlope = isBothSlopeAreInfinity(
+      this.slope,
+      other.slope
+    );
     const areSlopeEqual = areEqual(this.slope, other.slope);
     const yInterceptOfThis = getYIntercept(this.endA, this.slope);
     const yInterceptOfOther = getYIntercept(other.endA, other.slope);
@@ -62,7 +71,10 @@ class Line {
       yInterceptOfOther
     );
     const isnan = isNaN(yInterceptOfThis + yInterceptOfOther);
-    return areSlopeEqual && (!areYInterceptEqual || isnan);
+    return (
+      (checkInfinitySlope && isnan) ||
+      (!areYInterceptEqual && areSlopeEqual)
+    );
   }
 
   get slope() {

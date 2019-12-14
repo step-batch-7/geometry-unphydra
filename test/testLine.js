@@ -124,12 +124,6 @@ describe("Line", () => {
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should invalidate for two line segment of y-axis", () => {
-      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 2 });
-      const line2 = new Line({ x: 0, y: 0 }, { x: 0, y: -2 });
-      assert.notOk(line1.isParallelTo(line2));
-    });
-
     it("should invalidate for two line segment parallel to y-axis", () => {
       const line1 = new Line({ x: 2, y: 4 }, { x: 2, y: -4 });
       const line2 = new Line({ x: -2, y: 4 }, { x: -2, y: -4 });
