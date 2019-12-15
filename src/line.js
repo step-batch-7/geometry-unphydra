@@ -42,7 +42,7 @@ class Line {
   toString() {
     const endA = `(${this.endA.x},${this.endA.y})`;
     const endB = `(${this.endB.x},${this.endB.y})`;
-    return `[line ${endA} to ${endB}]`;
+    return `[Line ${endA} to ${endB}]`;
   }
 
   isEqualTo(other) {
