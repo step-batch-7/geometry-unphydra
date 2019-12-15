@@ -17,4 +17,13 @@ describe("point", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("clone", () => {
+    it("should give clone point for a point with valid coordinate", () => {
+      const point = new Point(2, 3);
+      const actual = point.clone();
+      const expected = new Point(2, 3);
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });

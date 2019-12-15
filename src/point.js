@@ -3,8 +3,13 @@ class Point {
     this.x = x;
     this.y = y;
   }
+
   toString() {
     return `[Point @(${this.x},${this.y})]`;
+  }
+
+  clone() {
+    return new Point(this.x, this.y);
   }
 }
 
