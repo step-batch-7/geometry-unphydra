@@ -22,6 +22,9 @@ class Point {
   }
 
   visit(action) {
+    if (!(action instanceof Function)) {
+      return undefined;
+    }
     return action(this.x, this.y);
   }
 }
