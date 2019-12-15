@@ -33,4 +33,16 @@ describe("point", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("isEqualTo", () => {
+    it("should validate if given point is instance of point", () => {
+      const point = new Point(2, 3);
+      assert.ok(point.isEqualTo(point));
+    });
+
+    it("should invalidate if given point is not instance of point", () => {
+      const point = new Point(2, 3);
+      assert.notOk(point.isEqualTo({ x: 2, y: 3 }));
+    });
+  });
 });
