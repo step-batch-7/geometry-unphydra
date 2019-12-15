@@ -9,5 +9,12 @@ describe("point", () => {
       const expected = "[Point @(2,3)]";
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should give string representation for undefined coordinates", () => {
+      const point = new Point();
+      const actual = point.toString();
+      const expected = "[Point @(undefined,undefined)]";
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });

@@ -4,7 +4,7 @@ class Point {
     this.y = y;
   }
   toString() {
-    return "[Point @(2,3)]";
+    return `[Point @(${this.x},${this.y})]`;
   }
 }
 
