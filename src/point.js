@@ -20,6 +20,10 @@ class Point {
     const isYCoordinateEqual = this.y === other.y;
     return isXCoordinateEqual && isYCoordinateEqual;
   }
+
+  visit(action) {
+    return action(this.x, this.y);
+  }
 }
 
 module.exports = Point;

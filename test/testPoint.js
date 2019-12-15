@@ -63,4 +63,20 @@ describe("point", () => {
       assert.ok(point1.isEqualTo(point2));
     });
   });
+
+  describe("visit", () => {
+    it("should visit with reference of sum and return sum of coordinates", () => {
+      const point = new Point(2, 3);
+      const actual = point.visit((x, y) => x + y);
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should visit with reference of multiple and return multiple of coordinates", () => {
+      const point = new Point(2, 3);
+      const actual = point.visit((x, y) => x * y);
+      const expected = 6;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
