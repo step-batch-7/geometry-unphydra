@@ -25,5 +25,12 @@ describe("point", () => {
       const expected = new Point(2, 3);
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should give clone point for a point with undefined coordinate", () => {
+      const point = new Point();
+      const actual = point.clone();
+      const expected = new Point();
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });
