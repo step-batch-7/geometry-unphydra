@@ -44,5 +44,23 @@ describe("point", () => {
       const point = new Point(2, 3);
       assert.notOk(point.isEqualTo({ x: 2, y: 3 }));
     });
+
+    it("should validate for given point is same coordinate", () => {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(2, 3);
+      assert.ok(point1.isEqualTo(point2));
+    });
+
+    it("should invalidate for given point is different coordinate", () => {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(4, 7);
+      assert.notOk(point1.isEqualTo(point2));
+    });
+
+    it("should validate for given point is negative coordinate", () => {
+      const point1 = new Point(-2, -6);
+      const point2 = new Point(-2, -6);
+      assert.ok(point1.isEqualTo(point2));
+    });
   });
 });

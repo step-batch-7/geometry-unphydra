@@ -16,7 +16,9 @@ class Point {
     if (!(other instanceof Point)) {
       return false;
     }
-    return true;
+    const isXCoordinateEqual = this.x === other.x;
+    const isYCoordinateEqual = this.y === other.y;
+    return isXCoordinateEqual && isYCoordinateEqual;
   }
 }
 
