@@ -121,7 +121,13 @@ class Line {
   }
   findPointFromStart(distance) {
     const lengthOfLine = this.length;
-    if (distance > lengthOfLine || distance < 0) return NaN;
+    if (distance > lengthOfLine || distance < 0) return null;
+    const distanceRatio = distance / lengthOfLine;
+    const X =
+      (1 - distanceRatio) * this.endA.x + distanceRatio * this.endB.x;
+    const Y =
+      (1 - distanceRatio) * this.endA.y + distanceRatio * this.endB.y;
+    return new Point(X, Y);
   }
 }
 module.exports = Line;

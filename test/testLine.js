@@ -49,9 +49,16 @@ describe("Line", () => {
       const line2 = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
       assert.ok(line1.isEqualTo(line2));
     });
+
     it("should invalidate if given line segment is not instanceOf line ", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = ({ x: 1, y: 1 }, { x: 3, y: 4 });
+      assert.notOk(line1.isEqualTo(line2));
+    });
+
+    it("should validate for first enda and second endb is equal but alter is deferent", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 5 }, { x: 1, y: 2 });
       assert.notOk(line1.isEqualTo(line2));
     });
   });
@@ -403,12 +410,33 @@ describe("Line", () => {
   describe("findPointFromStart", () => {
     it("should give null if the distance is greater than line length", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
-      assert.isNaN(line.findPointFromStart(5));
+      assert.isNull(line.findPointFromStart(5));
     });
 
     it("should give nan if the distance is less than zero", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
-      assert.isNaN(line.findPointFromStart(-1));
+      assert.isNull(line.findPointFromStart(-1));
+    });
+
+    it("should give point for a valid distance from the start of a line", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = line.findPointFromStart(2);
+      const expected = new Point(3, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give start point for zero distance", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = line.findPointFromStart(0);
+      const expected = new Point(1, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give end point for distance equal to length of line", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = line.findPointFromStart(4);
+      const expected = new Point(5, 1);
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });
