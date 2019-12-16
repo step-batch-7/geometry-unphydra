@@ -27,7 +27,10 @@ class Point {
 
   findDistanceTo(other) {
     if (!(other instanceof Point)) return NaN;
-    return 2;
+    const deltaX = (this.x - other.x) ** 2;
+    const deltaY = (this.y - other.y) ** 2;
+    const totalDelta = deltaX + deltaY;
+    return Math.sqrt(totalDelta);
   }
 }
 

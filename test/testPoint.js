@@ -87,11 +87,35 @@ describe("point", () => {
       assert.isNaN(point1.findDistanceTo(point2));
     });
 
-    it("should give distance of two positive points", () => {
+    it("should give distance of two positive points when distance is greater than zero", () => {
       const point1 = new Point(1, 2);
       const point2 = new Point(3, 2);
       const actual = point1.findDistanceTo(point2);
       const expected = 2;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give distance of two negative points when distance is greater than zero", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(-5, 2);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 6;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give distance of two points when distance is zero", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 2);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give distance for two points when distance is in decimal number", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(3, 11.9);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 10.1;
       assert.deepStrictEqual(actual, expected);
     });
   });
