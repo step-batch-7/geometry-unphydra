@@ -35,7 +35,8 @@ class Circle {
     if (!(point instanceof Point)) {
       return false;
     }
-    return true;
+    const distanceToCenter = point.findDistanceTo(this.centerPoint);
+    return distanceToCenter === this.radius;
   }
 }
 

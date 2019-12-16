@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Circle = require("../src/circle");
+const Point = require("../src/point");
 
 describe("circle", () => {
   describe("toString", () => {
@@ -76,10 +77,28 @@ describe("circle", () => {
   });
 
   describe("hasPoint", () => {
-    it("should give NaN if the point is not a instance of point", () => {
+    it("should invalidate if the point is not a instance of point", () => {
       const circle = new Circle({ x: 0, y: 0 }, 3);
       const point = { x: 3, y: 3 };
       assert.notOk(circle.hasPoint(point));
+    });
+
+    it("should validate if given point is valid and circle has the point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(3, 0);
+      assert.ok(circle.hasPoint(point));
+    });
+
+    it("should invalidate if given point is valid and circle not has the point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(2, 0);
+      assert.notOk(circle.hasPoint(point));
+    });
+
+    it("should validate if given point is zero zero and circle has the point", () => {
+      const circle = new Circle({ x: 2, y: 0 }, 2);
+      const point = new Point(0, 0);
+      assert.ok(circle.hasPoint(point));
     });
   });
 });
