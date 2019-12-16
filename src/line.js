@@ -61,10 +61,7 @@ class Line {
   }
 
   get length() {
-    const deltaX = (this.endA.x - this.endB.x) ** 2;
-    const deltaY = (this.endA.y - this.endB.y) ** 2;
-    const totalDelta = deltaX + deltaY;
-    return Math.sqrt(totalDelta);
+    return this.endA.findDistanceTo(this.endB);
   }
 
   isParallelTo(other) {
