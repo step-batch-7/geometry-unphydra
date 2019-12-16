@@ -51,9 +51,25 @@ describe("circle", () => {
       assert.approximately(actual, expected, 0.01);
     });
 
-    it("should give zero if radius is zero", () => {
+    it("should give zero for area if radius is zero", () => {
       const circle = new Circle({ x: 1, y: 1 }, 0);
       const actual = circle.area;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
+
+  describe("perimeter", () => {
+    it("should give perimeter of a circle with positive centre point and radius", () => {
+      const circle = new Circle({ x: 1, y: 1 }, 3);
+      const actual = circle.perimeter;
+      const expected = 18.85;
+      assert.approximately(actual, expected, 0.01);
+    });
+
+    it("should give zero for perimeter if radius is zero", () => {
+      const circle = new Circle({ x: 1, y: 1 }, 0);
+      const actual = circle.perimeter;
       const expected = 0;
       assert.deepStrictEqual(actual, expected);
     });
