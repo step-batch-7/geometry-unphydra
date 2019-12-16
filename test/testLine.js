@@ -51,7 +51,7 @@ describe("Line", () => {
     });
     it("should invalidate if given line segment is not instanceOf line ", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const line2 = ({ x: 3, y: 4 }, { x: 1, y: 2 });
+      const line2 = ({ x: 1, y: 1 }, { x: 3, y: 4 });
       assert.notOk(line1.isEqualTo(line2));
     });
   });
@@ -397,6 +397,18 @@ describe("Line", () => {
       const line = new Line({ x: 0, y: 2 }, { x: 5, y: 2 });
       const point = new Point(2, 2);
       assert.ok(line.hasPoint(point));
+    });
+  });
+
+  describe("findPointFromStart", () => {
+    it("should give null if the distance is greater than line length", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      assert.isNaN(line.findPointFromStart(5));
+    });
+
+    it("should give nan if the distance is less than zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      assert.isNaN(line.findPointFromStart(-1));
     });
   });
 });

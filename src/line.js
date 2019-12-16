@@ -44,8 +44,8 @@ class Line {
     let areEndsEqual =
       other.endA.isEqualTo(this.endA) || other.endA.isEqualTo(this.endB);
     areEndsEqual =
-      (areEndsEqual && other.endB.isEqualTo(this.endB)) ||
-      other.endB.isEqualTo(this.endA);
+      areEndsEqual &&
+      (other.endB.isEqualTo(this.endB) || other.endB.isEqualTo(this.endA));
     return areEndsEqual;
   }
 
@@ -118,6 +118,10 @@ class Line {
     const isXisInLine = point.x === this.findX(point.y);
     const isYisInLine = point.y === this.findY(point.x);
     return isXisInLine || isYisInLine;
+  }
+  findPointFromStart(distance) {
+    const lengthOfLine = this.length;
+    if (distance > lengthOfLine || distance < 0) return NaN;
   }
 }
 module.exports = Line;
