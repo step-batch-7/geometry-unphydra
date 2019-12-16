@@ -119,6 +119,7 @@ class Line {
     const isYisInLine = point.y === this.findY(point.x);
     return isXisInLine || isYisInLine;
   }
+
   findPointFromStart(distance) {
     const lengthOfLine = this.length;
     if (distance > lengthOfLine || distance < 0) return null;
@@ -128,6 +129,11 @@ class Line {
     const Y =
       (1 - distanceRatio) * this.endA.y + distanceRatio * this.endB.y;
     return new Point(X, Y);
+  }
+
+  findPointFromEnd(distance) {
+    const lengthOfLine = this.length;
+    if (distance > lengthOfLine || distance < 0) return null;
   }
 }
 module.exports = Line;

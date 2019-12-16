@@ -439,4 +439,16 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("findPointFromEnd", () => {
+    it("should give null if the distance is greater than line length", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      assert.isNull(line.findPointFromEnd(5));
+    });
+
+    it("should give nan if the distance is less than zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      assert.isNull(line.findPointFromEnd(-1));
+    });
+  });
 });
