@@ -1,9 +1,5 @@
 const Point = require("./point.js");
 
-const arePointsEqual = function(pointA, pointB) {
-  return pointA.x === pointB.x && pointA.y === pointB.y;
-};
-
 const getYIntercept = function(point, slope) {
   return point.y - point.x * slope;
 };
@@ -50,12 +46,10 @@ class Line {
       return false;
     }
     let areEndsEqual =
-      arePointsEqual(other.endA, this.endA) ||
-      arePointsEqual(other.endA, this.endB);
+      other.endA.isEqualTo(this.endA) || other.endA.isEqualTo(this.endB);
     areEndsEqual =
-      areEndsEqual &&
-      (arePointsEqual(other.endB, this.endB) ||
-        arePointsEqual(other.endB, this.endA));
+      (areEndsEqual && other.endB.isEqualTo(this.endB)) ||
+      other.endB.isEqualTo(this.endA);
     return areEndsEqual;
   }
 
