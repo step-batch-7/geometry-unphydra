@@ -1,9 +1,5 @@
 const Point = require("./point");
 
-const areCentrePointEqual = function(point1, point2) {
-  return point1.x === point2.x && point1.y === point2.y;
-};
-
 class Circle {
   constructor(centerPoint, radius) {
     this.centerPoint = new Point(centerPoint.x, centerPoint.y);
@@ -20,8 +16,7 @@ class Circle {
     if (!(other instanceof Circle)) {
       return false;
     }
-    const isCentrePointEqual = areCentrePointEqual(
-      this.centerPoint,
+    const isCentrePointEqual = this.centerPoint.isEqualTo(
       other.centerPoint
     );
     const areRadiusEqual = this.radius === other.radius;
