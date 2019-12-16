@@ -24,5 +24,22 @@ describe("circle", () => {
       const circle2 = { centerPoint: { x: 1, y: 2 }, radius: 5 };
       assert.notOk(circle1.isEqualTo(circle2));
     });
+
+    it("should validate if given circle is own circle", () => {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      assert.ok(circle.isEqualTo(circle));
+    });
+
+    it("should invalidate if given circle has equal radius but not equal center", () => {
+      const circle1 = new Circle({ x: 1, y: 2 }, 5);
+      const circle2 = new Circle({ x: 2, y: 2 }, 5);
+      assert.notOk(circle1.isEqualTo(circle2));
+    });
+
+    it("should invalidate if given circle has equal center but not equal radius", () => {
+      const circle1 = new Circle({ x: 1, y: 2 }, 5);
+      const circle2 = new Circle({ x: 1, y: 2 }, 6);
+      assert.notOk(circle1.isEqualTo(circle2));
+    });
   });
 });

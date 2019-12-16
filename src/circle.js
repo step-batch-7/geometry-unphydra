@@ -1,3 +1,7 @@
+const areCentrePointEqual = function(point1, point2) {
+  return point1.x === point2.x && point1.y === point2.y;
+};
+
 class Circle {
   constructor(centerPoint, radius) {
     this.centerPoint = { x: centerPoint.x, y: centerPoint.y };
@@ -14,7 +18,12 @@ class Circle {
     if (!(other instanceof Circle)) {
       return false;
     }
-    return true;
+    const isCentrePointEqual = areCentrePointEqual(
+      this.centerPoint,
+      other.centerPoint
+    );
+    const areRadiusEqual = this.radius === other.radius;
+    return isCentrePointEqual && areRadiusEqual;
   }
 }
 
