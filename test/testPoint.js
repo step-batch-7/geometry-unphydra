@@ -123,8 +123,8 @@ describe("point", () => {
 
   describe("isOn", () => {
     it("should validate if point is on line segment", () => {
-      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
-      const point = new Point(3, 3);
+      const line = new Line({ x: 0, y: 5 }, { x: 10, y: 5 });
+      const point = new Point(2, 5);
       assert.ok(point.isOn(line));
     });
 

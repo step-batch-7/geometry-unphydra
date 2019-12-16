@@ -17,4 +17,12 @@ describe("circle", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("isEqualTo", () => {
+    it("should invalidate if given circle is not instance of circle", () => {
+      const circle1 = new Circle({ x: 1, y: 2 }, 5);
+      const circle2 = { centerPoint: { x: 1, y: 2 }, radius: 5 };
+      assert.notOk(circle1.isEqualTo(circle2));
+    });
+  });
 });
