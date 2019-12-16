@@ -177,7 +177,7 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
 
-    it("should give zero for y-axis", () => {
+    it("should give infinity for y-axis", () => {
       const line = new Line({ x: 0, y: 2 }, { x: 0, y: 1 });
       const actual = line.slope;
       const expected = Infinity;
@@ -188,6 +188,13 @@ describe("Line", () => {
       const line = new Line({ x: 2, y: 1 }, { x: 2, y: 1 });
       const actual = line.slope;
       const expected = NaN;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give infinity if slope is -infinity", () => {
+      const line = new Line({ x: 0, y: -7 }, { x: 0, y: 0 });
+      const actual = line.slope;
+      const expected = Infinity;
       assert.deepStrictEqual(actual, expected);
     });
   });
