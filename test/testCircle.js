@@ -42,4 +42,20 @@ describe("circle", () => {
       assert.notOk(circle1.isEqualTo(circle2));
     });
   });
+
+  describe("area", () => {
+    it("should give area of a circle with positive centre point and radius", () => {
+      const circle = new Circle({ x: 1, y: 1 }, 3);
+      const actual = circle.area;
+      const expected = 28.27;
+      assert.approximately(actual, expected, 0.01);
+    });
+
+    it("should give zero if radius is zero", () => {
+      const circle = new Circle({ x: 1, y: 1 }, 0);
+      const actual = circle.area;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
