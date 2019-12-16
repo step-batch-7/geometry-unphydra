@@ -134,6 +134,12 @@ class Line {
   findPointFromEnd(distance) {
     const lengthOfLine = this.length;
     if (distance > lengthOfLine || distance < 0) return null;
+    const distanceRatio = distance / lengthOfLine;
+    const X =
+      (1 - distanceRatio) * this.endB.x + distanceRatio * this.endA.x;
+    const Y =
+      (1 - distanceRatio) * this.endB.y + distanceRatio * this.endA.y;
+    return new Point(X, Y);
   }
 }
 module.exports = Line;

@@ -450,5 +450,26 @@ describe("Line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
       assert.isNull(line.findPointFromEnd(-1));
     });
+
+    it("should give point for a valid distance from the end of a line", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = line.findPointFromEnd(2);
+      const expected = new Point(3, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give start point for zero distance", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = line.findPointFromEnd(0);
+      const expected = new Point(5, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give end point for distance equal to length of line", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = line.findPointFromEnd(4);
+      const expected = new Point(1, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });
