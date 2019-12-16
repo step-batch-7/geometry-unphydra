@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
+const Line = require("../src/line");
 
 describe("point", () => {
   describe("toString", () => {
@@ -117,6 +118,28 @@ describe("point", () => {
       const actual = point1.findDistanceTo(point2);
       const expected = 10.1;
       assert.deepStrictEqual(actual, expected);
+    });
+  });
+
+  describe("isOn", () => {
+    it("should validate if point is on line segment", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const point = new Point(3, 3);
+      assert.ok(point.isOn(line));
+    });
+
+    it("should invalidate of point is not on line segment", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const point = new Point(3, 4);
+      assert.notOk(point.isOn(line));
+    });
+
+    it("should throw an error if line object does not has the hasPoint method", () => {
+      const line = ({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const point = new Point(3, 3);
+      assert.throws(() => {
+        point.isOn(line);
+      });
     });
   });
 });

@@ -32,6 +32,10 @@ class Point {
     const totalDelta = deltaX + deltaY;
     return Math.sqrt(totalDelta);
   }
+
+  isOn(line) {
+    return line.hasPoint(new Point(this.x, this.y));
+  }
 }
 
 module.exports = Point;
