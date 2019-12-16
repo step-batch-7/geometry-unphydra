@@ -4,10 +4,6 @@ const getYIntercept = function(point, slope) {
   return point.y - point.x * slope;
 };
 
-const areEqual = function(val1, val2) {
-  return val1 === val2;
-};
-
 const isCoordinateInRange = function(coordinate, range) {
   const sortedRange = range.sort((a, b) => a - b);
   return coordinate >= sortedRange[0] && coordinate <= sortedRange[1];
@@ -61,7 +57,7 @@ class Line {
     if (!(other instanceof Line)) {
       return false;
     }
-    const areSlopeEqual = areEqual(this.slope, other.slope);
+    const areSlopeEqual = this.slope === other.slope;
     let arePointsCollinear = checkPointsCollinear(
       this.endA,
       this.endB,
