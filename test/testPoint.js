@@ -79,4 +79,20 @@ describe("point", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("findDistanceTo", () => {
+    it("should give NaN if point is not instance of point", () => {
+      const point1 = new Point(2, 3);
+      const point2 = { x: 4, y: 6 };
+      assert.isNaN(point1.findDistanceTo(point2));
+    });
+
+    it("should give distance of two positive points", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(3, 2);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 2;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });

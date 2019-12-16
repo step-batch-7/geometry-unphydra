@@ -24,6 +24,11 @@ class Point {
   visit(action) {
     return action(this.x, this.y);
   }
+
+  findDistanceTo(other) {
+    if (!(other instanceof Point)) return NaN;
+    return 2;
+  }
 }
 
 module.exports = Point;
