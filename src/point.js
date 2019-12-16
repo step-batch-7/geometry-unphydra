@@ -33,8 +33,8 @@ class Point {
     return Math.sqrt(totalDelta);
   }
 
-  isOn(line) {
-    return line.hasPoint(new Point(this.x, this.y));
+  isOn(shape) {
+    return shape.hasPoint(new Point(this.x, this.y));
   }
 }
 

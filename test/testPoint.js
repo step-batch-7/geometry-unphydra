@@ -1,6 +1,7 @@
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
 const Line = require("../src/line");
+const Circle = require("../src/circle");
 
 describe("point", () => {
   describe("toString", () => {
@@ -139,6 +140,26 @@ describe("point", () => {
       const point = new Point(3, 3);
       assert.throws(() => {
         point.isOn(line);
+      });
+    });
+
+    it("should validate if point is on circle", () => {
+      const circle = new Circle({ x: 0, y: 5 }, 5);
+      const point = new Point(5, 5);
+      assert.ok(point.isOn(circle));
+    });
+
+    it("should invalidate of point is not on circle", () => {
+      const circle = new Circle({ x: 1, y: 1 }, 2);
+      const point = new Point(3, 4);
+      assert.notOk(point.isOn(circle));
+    });
+
+    it("should throw an error if circle object does not has the hasPoint method", () => {
+      const circle = { center: { x: 1, y: 1 }, radius: 5 };
+      const point = new Point(3, 3);
+      assert.throws(() => {
+        point.isOn(circle);
       });
     });
   });
