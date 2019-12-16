@@ -32,8 +32,8 @@ const checkPointsCollinear = function(point1, point2, point3) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+    this.endA = new Point(endA.x, endA.y);
+    this.endB = new Point(endB.x, endB.y);
   }
 
   toString() {
