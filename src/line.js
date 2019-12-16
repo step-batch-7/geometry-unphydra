@@ -46,6 +46,9 @@ class Line {
     if (other === this) {
       return true;
     }
+    if (!(other instanceof Line)) {
+      return false;
+    }
     const isInstanceofLine = other instanceof Line;
     let areEndsEqual =
       arePointsEqual(other.endA, this.endA) ||

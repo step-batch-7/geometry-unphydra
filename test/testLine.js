@@ -49,6 +49,11 @@ describe("Line", () => {
       const line2 = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
       assert.ok(line1.isEqualTo(line2));
     });
+    it("should invalidate if given line segment is not instanceOf line ", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = ({ x: 3, y: 4 }, { x: 1, y: 2 });
+      assert.notOk(line1.isEqualTo(line2));
+    });
   });
 
   describe("length", () => {
