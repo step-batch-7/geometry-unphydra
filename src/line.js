@@ -1,3 +1,5 @@
+const Point = require("./point.js");
+
 const arePointsEqual = function(pointA, pointB) {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
@@ -116,6 +118,9 @@ class Line {
   }
 
   hasPoint(point) {
+    if (!(point instanceof Point)) {
+      return false;
+    }
     const isXisInRange = isCoordinateInRange(point.x, [
       this.endA.x,
       this.endB.x

@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", () => {
   describe("toString", () => {
@@ -342,27 +343,37 @@ describe("Line", () => {
   describe("hasPoint", () => {
     it("should validate for a line segment with positive points", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
-      assert.ok(line.hasPoint({ x: 3, y: 3 }));
+      const point = new Point(3, 3);
+      assert.ok(line.hasPoint(point));
     });
 
     it("should invalidate for a line segment with positive points", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
-      assert.notOk(line.hasPoint({ x: 6, y: 6 }));
+      const point = new Point(6, 6);
+      assert.notOk(line.hasPoint(point));
     });
 
     it("should validate for a line segment with negative points", () => {
       const line = new Line({ x: -2, y: -1 }, { x: -8, y: -4 });
-      assert.ok(line.hasPoint({ x: -4, y: -2 }));
+      const point = new Point(-4, -2);
+      assert.ok(line.hasPoint(point));
     });
 
     it("should invalidate for a line segment with negative points", () => {
       const line = new Line({ x: -2, y: -1 }, { x: -8, y: -4 });
-      assert.notOk(line.hasPoint({ x: -10, y: -2 }));
+      const point = new Point(-10, -2);
+      assert.notOk(line.hasPoint(point));
     });
 
     it("should validate for a line segment passing through zero,zero", () => {
       const line = new Line({ x: -2, y: -2 }, { x: 2, y: 2 });
-      assert.ok(line.hasPoint({ x: 0, y: 0 }));
+      const point = new Point(0, 0);
+      assert.ok(line.hasPoint(point));
+    });
+
+    it("should invalidate for a point which is not instance of point", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 5, y: 5 });
+      assert.notOk(line.hasPoint({ x: 3, y: 3 }));
     });
   });
 });
