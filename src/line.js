@@ -22,6 +22,17 @@ const checkPointsCollinear = function(point1, point2, point3) {
   return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) === 0;
 };
 
+const isInvalidDistance = function(distance, lengthOfLine) {
+  return distance > lengthOfLine || distance < 0;
+};
+
+const getCoordinates = function(distance, length, start, end) {
+  const distanceRatio = distance / length;
+  const X = (1 - distanceRatio) * start.x + distanceRatio * end.x;
+  const Y = (1 - distanceRatio) * start.y + distanceRatio * end.y;
+  return { x: X, y: Y };
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = new Point(endA.x, endA.y);
@@ -122,24 +133,26 @@ class Line {
 
   findPointFromStart(distance) {
     const lengthOfLine = this.length;
-    if (distance > lengthOfLine || distance < 0) return null;
-    const distanceRatio = distance / lengthOfLine;
-    const X =
-      (1 - distanceRatio) * this.endA.x + distanceRatio * this.endB.x;
-    const Y =
-      (1 - distanceRatio) * this.endA.y + distanceRatio * this.endB.y;
-    return new Point(X, Y);
+    if (isInvalidDistance(distance, lengthOfLine)) return null;
+    const point = getCoordinates(
+      distance,
+      lengthOfLine,
+      this.endA,
+      this.endB
+    );
+    return new Point(point.x, point.y);
   }
 
   findPointFromEnd(distance) {
     const lengthOfLine = this.length;
-    if (distance > lengthOfLine || distance < 0) return null;
-    const distanceRatio = distance / lengthOfLine;
-    const X =
-      (1 - distanceRatio) * this.endB.x + distanceRatio * this.endA.x;
-    const Y =
-      (1 - distanceRatio) * this.endB.y + distanceRatio * this.endA.y;
-    return new Point(X, Y);
+    if (isInvalidDistance(distance, lengthOfLine)) return null;
+    const point = getCoordinates(
+      distance,
+      lengthOfLine,
+      this.endB,
+      this.endA
+    );
+    return new Point(point.x, point.y);
   }
 }
 module.exports = Line;
