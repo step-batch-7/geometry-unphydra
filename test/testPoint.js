@@ -78,12 +78,5 @@ describe("point", () => {
       const expected = 6;
       assert.deepStrictEqual(actual, expected);
     });
-
-    it("should visit with reference of undefined and return undefined", () => {
-      const point = new Point(2, 3);
-      const actual = point.visit("function");
-      const expected = undefined;
-      assert.deepStrictEqual(actual, expected);
-    });
   });
 });
