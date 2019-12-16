@@ -48,8 +48,13 @@ class Line {
     }
     const isInstanceofLine = other instanceof Line;
     let areEndsEqual =
-      isInstanceofLine && arePointsEqual(other.endA, this.endA);
-    return areEndsEqual && arePointsEqual(other.endB, this.endB);
+      arePointsEqual(other.endA, this.endA) ||
+      arePointsEqual(other.endA, this.endB);
+    areEndsEqual =
+      areEndsEqual &&
+      (arePointsEqual(other.endB, this.endB) ||
+        arePointsEqual(other.endB, this.endA));
+    return isInstanceofLine && areEndsEqual;
   }
 
   get length() {

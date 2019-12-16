@@ -43,6 +43,12 @@ describe("Line", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.ok(line1.isEqualTo(line1));
     });
+
+    it("should validate if other line is altered of line segment", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
+      assert.ok(line1.isEqualTo(line2));
+    });
   });
 
   describe("length", () => {
