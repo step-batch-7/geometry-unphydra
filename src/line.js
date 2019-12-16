@@ -121,15 +121,9 @@ class Line {
     if (!(point instanceof Point)) {
       return false;
     }
-    const isXisInRange = isCoordinateInRange(point.x, [
-      this.endA.x,
-      this.endB.x
-    ]);
-    const isYisInRange = isCoordinateInRange(point.y, [
-      this.endA.y,
-      this.endB.y
-    ]);
-    return isXisInRange && isYisInRange;
+    const isXisInLine = point.x === this.findX(point.y);
+    const isYisInLine = point.y === this.findY(point.x);
+    return isXisInLine || isYisInLine;
   }
 }
 module.exports = Line;

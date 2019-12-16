@@ -375,5 +375,17 @@ describe("Line", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 5, y: 5 });
       assert.notOk(line.hasPoint({ x: 3, y: 3 }));
     });
+
+    it("should invalidate for a point which is not in the line or line segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 5, y: 5 });
+      const point = new Point(4, 3);
+      assert.notOk(line.hasPoint(point));
+    });
+
+    it("should validate for a point which in on a line parallel to x-axis", () => {
+      const line = new Line({ x: 0, y: 2 }, { x: 5, y: 2 });
+      const point = new Point(2, 2);
+      assert.ok(line.hasPoint(point));
+    });
   });
 });
