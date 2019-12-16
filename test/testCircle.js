@@ -74,4 +74,12 @@ describe("circle", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("hasPoint", () => {
+    it("should give NaN if the point is not a instance of point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = { x: 3, y: 3 };
+      assert.notOk(circle.hasPoint(point));
+    });
+  });
 });
