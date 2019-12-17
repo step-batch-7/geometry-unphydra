@@ -46,6 +46,13 @@ class Circle {
   moveTo(point) {
     return new Circle({ x: point.x, y: point.y }, this.radius);
   }
+
+  covers(point) {
+    if (!(point instanceof Point)) {
+      return false;
+    }
+    return true;
+  }
 }
 
 module.exports = Circle;

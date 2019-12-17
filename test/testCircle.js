@@ -129,4 +129,12 @@ describe("circle", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("covers", () => {
+    it("should invalidate if point is not instance of point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = { x: 1, y: 0 };
+      assert.notOk(circle.covers(point));
+    });
+  });
 });
