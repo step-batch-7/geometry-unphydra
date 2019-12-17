@@ -18,6 +18,15 @@ describe("point", () => {
       const expected = "[Point @(undefined,undefined)]";
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should not change any value of x and y of point object", () => {
+      const point = new Point(2, 3);
+      point.x = undefined;
+      point.y = undefined;
+      const actual = point.toString();
+      const expected = "[Point @(2,3)]";
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 
   describe("clone", () => {
