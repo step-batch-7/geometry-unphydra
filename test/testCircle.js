@@ -119,5 +119,21 @@ describe("circle", () => {
       const expected = null;
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should give a new circle with the same dimension in the given point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(1, 1);
+      const actual = circle.moveTo(point);
+      const expected = new Circle({ x: 1, y: 1 }, 3);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give the same circle if the given point is same as previous", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(0, 0);
+      const actual = circle.moveTo(point);
+      const expected = circle;
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });
