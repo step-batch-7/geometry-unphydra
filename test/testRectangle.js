@@ -10,5 +10,16 @@ describe("Rectangle", () => {
       const expected = "[Rectangle (1,1) to (5,4)]";
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should give toString representation of rectangle with undefined values", () => {
+      const rectangle = new Rectangle(
+        { x: undefined, y: undefined },
+        { x: undefined, y: undefined }
+      );
+      const actual = rectangle.toString();
+      const expected =
+        "[Rectangle (undefined,undefined) to (undefined,undefined)]";
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 });
