@@ -105,5 +105,29 @@ describe("Rectangle", () => {
       };
       assert.notOk(rectangle1.isEqualTo(rectangle2));
     });
+
+    it("should validate for replica rectangle", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should invalidate for different rectangle", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 5, y: 4 });
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should validate for rectangle which has same diagonal but in opposite direction", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = new Rectangle({ x: 5, y: 4 }, { x: 1, y: 1 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should validate for rectangle with other diagonal", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 4 }, { x: 5, y: 1 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
   });
 });

@@ -1,6 +1,7 @@
 const Point = require("../src/point");
+const Line = require("../src/line");
 
-const getOtherVertex = function(vertexA, vertexC) {
+const getOtherVertices = function(vertexA, vertexC) {
   const B = new Point(vertexC.x, vertexA.y);
   const D = new Point(vertexA.x, vertexC.y);
   return { B: B, D: D };
@@ -23,14 +24,14 @@ class Rectangle {
   }
 
   get area() {
-    const { B } = getOtherVertex(this.A, this.C);
+    const { B } = getOtherVertices(this.A, this.C);
     const length = B.findDistanceTo(this.A);
     const breadth = B.findDistanceTo(this.C);
     return length * breadth;
   }
 
   get perimeter() {
-    const { B } = getOtherVertex(this.A, this.C);
+    const { B } = getOtherVertices(this.A, this.C);
     const length = B.findDistanceTo(this.A);
     const breadth = B.findDistanceTo(this.C);
     return 2 * (length + breadth);
@@ -40,7 +41,14 @@ class Rectangle {
     if (!(other instanceof Rectangle)) {
       return false;
     }
-    return true;
+    const { B, D } = getOtherVertices(this.A, this.C);
+    const diagonal1 = new Line(this.A, this.C);
+    const diagonal2 = new Line(B, D);
+    const otherDiagonal = new Line(other.A, other.C);
+    return (
+      otherDiagonal.isEqualTo(diagonal1) ||
+      otherDiagonal.isEqualTo(diagonal2)
+    );
   }
 }
 module.exports = Rectangle;
