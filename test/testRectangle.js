@@ -34,12 +34,33 @@ describe("Rectangle", () => {
     });
   });
 
-  // describe("area", () => {
-  //   it("should give area for a rectangle with positive points", () => {
-  //     const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
-  //     const actual = rectangle.area;
-  //     const expected = 12;
-  //     assert.deepStrictEqual(actual, expected);
-  //   });
-  // });
+  describe("area", () => {
+    it("should give area for a rectangle with positive points", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const actual = rectangle.area;
+      const expected = 12;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give zero if diagonal is parallel to x-axis", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = rectangle.area;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give zero if diagonal is parallel to y-axis", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
+      const actual = rectangle.area;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give zero if two point to creat rectangle are same", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const actual = rectangle.area;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });

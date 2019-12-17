@@ -1,3 +1,5 @@
+const Point = require("../src/point");
+
 class Rectangle {
   constructor(vertexA, vertexC) {
     this.A = new Point(vertexA.x, vertexA.y);
@@ -16,6 +18,12 @@ class Rectangle {
     const vertexA = `(${this.A.x},${this.A.y})`;
     const vertexC = `(${this.C.x},${this.C.y})`;
     return `[Rectangle ${vertexA} to ${vertexC}]`;
+  }
+
+  get area() {
+    const length = this.A.findDistanceTo(this.B);
+    const breadth = this.A.findDistanceTo(this.D);
+    return length * breadth;
   }
 }
 module.exports = Rectangle;
