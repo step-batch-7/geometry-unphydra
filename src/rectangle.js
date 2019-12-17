@@ -50,5 +50,19 @@ class Rectangle {
       otherDiagonal.isEqualTo(diagonal2)
     );
   }
+
+  hasPoint(point) {
+    const { B, D } = getOtherVertices(this.A, this.C);
+    const lowerLine = new Line(this.A, B);
+    const upperLine = new Line(this.C, D);
+    const leftLine = new Line(this.A, D);
+    const rightLine = new Line(B, this.C);
+    return (
+      lowerLine.hasPoint(point) ||
+      upperLine.hasPoint(point) ||
+      leftLine.hasPoint(point) ||
+      rightLine.hasPoint(point)
+    );
+  }
 }
 module.exports = Rectangle;

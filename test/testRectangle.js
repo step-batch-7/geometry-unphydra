@@ -130,4 +130,54 @@ describe("Rectangle", () => {
       assert.ok(rectangle1.isEqualTo(rectangle2));
     });
   });
+
+  describe("hasPoint", () => {
+    it("should give false if the point is not instance of point", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = { x: 3, y: 1 };
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the point is any of the vertices ", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(1, 1);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the point on lower line", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(3, 1);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the point on upper line", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(3, 4);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the point on right line", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(5, 2);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the point on light line", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(1, 3);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if the point inside the rectangle but not on the lines", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(2, 2);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if the point outside the rectangle but not on the lines", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(0, 0);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+  });
 });
