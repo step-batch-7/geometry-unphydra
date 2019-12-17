@@ -113,13 +113,6 @@ describe("circle", () => {
   });
 
   describe("moveTo", () => {
-    it("should return null if the given point is not instance of Point", () => {
-      const circle = new Circle({ x: 0, y: 0 }, 3);
-      const actual = circle.moveTo({ x: 1, y: 1 });
-      const expected = null;
-      assert.deepStrictEqual(actual, expected);
-    });
-
     it("should give a new circle with the same dimension in the given point", () => {
       const circle = new Circle({ x: 0, y: 0 }, 3);
       const point = new Point(1, 1);
