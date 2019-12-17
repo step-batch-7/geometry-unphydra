@@ -64,5 +64,11 @@ class Rectangle {
       rightLine.hasPoint(point)
     );
   }
+
+  covers(point) {
+    if (!(point instanceof Point)) {
+      return false;
+    }
+  }
 }
 module.exports = Rectangle;

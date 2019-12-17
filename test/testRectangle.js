@@ -180,4 +180,12 @@ describe("Rectangle", () => {
       assert.notOk(rectangle.hasPoint(point));
     });
   });
+
+  describe("covers", () => {
+    it("should invalidate if the given point is instance of point", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = { x: 1, y: 1 };
+      assert.notOk(rectangle.covers(point));
+    });
+  });
 });
