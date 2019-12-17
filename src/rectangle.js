@@ -1,16 +1,18 @@
 const Point = require("../src/point");
 
+const getOtherVertex = function(vertexA, vertexC) {
+  const B = new Point(vertexC.x, vertexA.y);
+  const D = new Point(vertexA.x, vertexC.y);
+  return { B: B, D: D };
+};
+
 class Rectangle {
   constructor(vertexA, vertexC) {
     this.A = new Point(vertexA.x, vertexA.y);
     this.C = new Point(vertexC.x, vertexC.y);
-    this.B = new Point(vertexC.x, vertexA.y);
-    this.D = new Point(vertexA.x, vertexC.y);
     Object.defineProperties(this, {
       A: { writable: false },
-      B: { writable: false },
-      C: { writable: false },
-      D: { writable: false }
+      C: { writable: false }
     });
   }
 
@@ -21,14 +23,16 @@ class Rectangle {
   }
 
   get area() {
-    const length = this.A.findDistanceTo(this.B);
-    const breadth = this.A.findDistanceTo(this.D);
+    const { B } = getOtherVertex(this.A, this.C);
+    const length = B.findDistanceTo(this.A);
+    const breadth = B.findDistanceTo(this.C);
     return length * breadth;
   }
 
   get perimeter() {
-    const length = this.A.findDistanceTo(this.B);
-    const breadth = this.A.findDistanceTo(this.D);
+    const { B } = getOtherVertex(this.A, this.C);
+    const length = B.findDistanceTo(this.A);
+    const breadth = B.findDistanceTo(this.C);
     return 2 * (length + breadth);
   }
 
@@ -36,6 +40,7 @@ class Rectangle {
     if (!(other instanceof Rectangle)) {
       return false;
     }
+    return true;
   }
 }
 module.exports = Rectangle;

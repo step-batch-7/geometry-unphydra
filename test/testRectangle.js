@@ -95,7 +95,7 @@ describe("Rectangle", () => {
   });
 
   describe("isEqualTo", () => {
-    it("should give false if the other is not an instance of Rectangle", () => {
+    it("should invalidate if the other is not an instance of Rectangle", () => {
       const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
       const rectangle2 = {
         A: { x: 1, y: 1 },
