@@ -187,5 +187,23 @@ describe("Rectangle", () => {
       const point = { x: 1, y: 1 };
       assert.notOk(rectangle.covers(point));
     });
+
+    it("should validate if the point is inside the rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(2, 3);
+      assert.ok(rectangle.covers(point));
+    });
+
+    it("should validate if the point is on the perimeter of the rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(1, 3);
+      assert.ok(rectangle.covers(point));
+    });
+
+    it("should invalidate if the point is outside the rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(5, 5);
+      assert.notOk(rectangle.covers(point));
+    });
   });
 });

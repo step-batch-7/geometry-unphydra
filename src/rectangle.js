@@ -7,6 +7,11 @@ const getOtherVertices = function(vertexA, vertexC) {
   return { B: B, D: D };
 };
 
+const isCoordinateInRange = function(coordinate, range) {
+  const sortedRange = range.sort((a, b) => a - b);
+  return coordinate >= sortedRange[0] && coordinate <= sortedRange[1];
+};
+
 class Rectangle {
   constructor(vertexA, vertexC) {
     this.A = new Point(vertexA.x, vertexA.y);
@@ -69,6 +74,15 @@ class Rectangle {
     if (!(point instanceof Point)) {
       return false;
     }
+    const xCoordinateInRange = isCoordinateInRange(point.x, [
+      this.A.x,
+      this.C.x
+    ]);
+    const yCoordinateInRange = isCoordinateInRange(point.y, [
+      this.A.y,
+      this.C.y
+    ]);
+    return xCoordinateInRange && yCoordinateInRange;
   }
 }
 module.exports = Rectangle;
