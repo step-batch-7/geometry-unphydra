@@ -18,6 +18,15 @@ describe("Line", () => {
         "[Line (undefined,undefined) to (undefined,undefined)]";
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should not change the properties of the line", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      line.endA = undefined;
+      line.endB = undefined;
+      const actual = line.toString();
+      const expected = "[Line (1,2) to (3,4)]";
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 
   describe("isEqualTo", () => {
