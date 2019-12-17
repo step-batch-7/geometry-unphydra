@@ -5,6 +5,7 @@ class Circle {
     this.centerPoint = new Point(centerPoint.x, centerPoint.y);
     this.radius = radius;
     Object.defineProperties(this, {
+      centerPoint: { writable: false },
       radius: { writable: false }
     });
   }
