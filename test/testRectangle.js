@@ -33,4 +33,13 @@ describe("Rectangle", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  // describe("area", () => {
+  //   it("should give area for a rectangle with positive points", () => {
+  //     const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+  //     const actual = rectangle.area;
+  //     const expected = 12;
+  //     assert.deepStrictEqual(actual, expected);
+  //   });
+  // });
 });

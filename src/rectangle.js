@@ -1,9 +1,9 @@
 class Rectangle {
   constructor(vertexA, vertexC) {
-    this.A = { x: vertexA.x, y: vertexA.y };
-    this.C = { x: vertexC.x, y: vertexC.y };
-    this.B = { x: vertexA.x, y: vertexC.y };
-    this.D = { x: vertexC.x, y: vertexA.y };
+    this.A = new Point(vertexA.x, vertexA.y);
+    this.C = new Point(vertexC.x, vertexC.y);
+    this.B = new Point(vertexA.x, vertexC.y);
+    this.D = new Point(vertexC.x, vertexA.y);
     Object.defineProperties(this, {
       A: { writable: false },
       B: { writable: false },
