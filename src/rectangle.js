@@ -4,6 +4,12 @@ class Rectangle {
     this.C = { x: vertexC.x, y: vertexC.y };
     this.B = { x: vertexA.x, y: vertexC.y };
     this.D = { x: vertexC.x, y: vertexA.y };
+    Object.defineProperties(this, {
+      A: { writable: false },
+      B: { writable: false },
+      C: { writable: false },
+      D: { writable: false }
+    });
   }
 
   toString() {
