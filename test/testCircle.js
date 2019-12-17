@@ -17,6 +17,16 @@ describe("circle", () => {
       const expected = "[Circle @(undefined,undefined) radius undefined]";
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should remain unchanged of the properties of the circle", () => {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      circle.centerPoint.x = undefined;
+      circle.centerPoint.y = undefined;
+      circle.radius = undefined;
+      const actual = circle.toString();
+      const expected = "[Circle @(1,2) radius 5]";
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 
   describe("isEqualTo", () => {
