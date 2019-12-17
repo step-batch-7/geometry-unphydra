@@ -93,4 +93,17 @@ describe("Rectangle", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("isEqualTo", () => {
+    it("should give false if the other is not an instance of Rectangle", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = {
+        A: { x: 1, y: 1 },
+        C: { x: 5, y: 4 },
+        B: { x: 5, y: 1 },
+        D: { x: 1, y: 5 }
+      };
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
+  });
 });

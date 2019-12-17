@@ -31,5 +31,11 @@ class Rectangle {
     const breadth = this.A.findDistanceTo(this.D);
     return 2 * (length + breadth);
   }
+
+  isEqualTo(other) {
+    if (!(other instanceof Rectangle)) {
+      return false;
+    }
+  }
 }
 module.exports = Rectangle;
