@@ -111,4 +111,13 @@ describe("circle", () => {
       assert.ok(circle.hasPoint(point));
     });
   });
+
+  describe("moveTo", () => {
+    it("should return null if the given point is not instance of Point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const actual = circle.moveTo({ x: 1, y: 1 });
+      const expected = null;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
