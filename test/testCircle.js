@@ -136,5 +136,29 @@ describe("circle", () => {
       const point = { x: 1, y: 0 };
       assert.notOk(circle.covers(point));
     });
+
+    it("should validate if the point is inside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(2, 2);
+      assert.ok(circle.covers(point));
+    });
+
+    it("should invalidate if the point is not inside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(4, 0);
+      assert.notOk(circle.covers(point));
+    });
+
+    it("should validate if the point is in center the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(0, 0);
+      assert.ok(circle.covers(point));
+    });
+
+    it("should invalidate if the point is in perimeter the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(3, 0);
+      assert.ok(circle.covers(point));
+    });
   });
 });
