@@ -63,4 +63,34 @@ describe("Rectangle", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("perimeter", () => {
+    it("should give perimeter for a rectangle with positive points", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const actual = rectangle.perimeter;
+      const expected = 14;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give double length if diagonal is parallel to x-axis", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = rectangle.perimeter;
+      const expected = 8;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give double breadth if diagonal is parallel to y-axis", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 4 });
+      const actual = rectangle.perimeter;
+      const expected = 6;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give zero if two point to creat rectangle are same", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const actual = rectangle.perimeter;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
