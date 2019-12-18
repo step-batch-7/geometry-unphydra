@@ -25,9 +25,7 @@ describe("Rectangle", () => {
     it("should not change the properties of rectangle", () => {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
       rectangle.A = undefined;
-      rectangle.B = undefined;
       rectangle.C = undefined;
-      rectangle.D = undefined;
       const actual = rectangle.toString();
       const expected = "[Rectangle (1,1) to (5,4)]";
       assert.deepStrictEqual(actual, expected);
