@@ -203,5 +203,11 @@ describe("Rectangle", () => {
       const point = new Point(5, 5);
       assert.notOk(rectangle.covers(point));
     });
+
+    it("should invalidate it point is on the vertex of the rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(1, 1);
+      assert.notOk(rectangle.covers(point));
+    });
   });
 });
