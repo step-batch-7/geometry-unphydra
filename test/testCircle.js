@@ -158,7 +158,7 @@ describe("circle", () => {
     it("should invalidate if the point is in perimeter the circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 3);
       const point = new Point(3, 0);
-      assert.ok(circle.covers(point));
+      assert.notOk(circle.covers(point));
     });
   });
 });

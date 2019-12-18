@@ -52,7 +52,7 @@ class Circle {
       return false;
     }
     const distanceToCenter = point.findDistanceTo(this.centerPoint);
-    return distanceToCenter <= this.radius;
+    return distanceToCenter < this.radius;
   }
 }
 
