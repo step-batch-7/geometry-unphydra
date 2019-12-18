@@ -9,7 +9,7 @@ const getOtherVertices = function(vertexA, vertexC) {
 
 const isCoordinateInRange = function(coordinate, range) {
   const sortedRange = range.sort((a, b) => a - b);
-  return coordinate >= sortedRange[0] && coordinate <= sortedRange[1];
+  return coordinate > sortedRange[0] && coordinate < sortedRange[1];
 };
 
 class Rectangle {
